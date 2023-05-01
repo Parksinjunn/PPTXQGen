@@ -1,0 +1,592 @@
+﻿<!-- <script src="PptxGenJS/dist/pptxgen.bundle.js"></script> -->
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PowerPoint Generator</title>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .generate-btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+
+        .question-container {
+            display: flex;
+            flex-direction: row;
+            margin-bottom: 10px;
+        }
+
+        .rationale-container {
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            margin-right: 10px;
+        }
+
+        .bottom-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .bottom-container input {
+                margin-right: 10px;
+            }
+    </style>
+    <script>
+        function generatePPT() {
+            // Get the values from the text fields
+            const questions = Array.from(document.querySelectorAll(".question")).map(q => q.value);
+            const rationales = Array.from(document.querySelectorAll(".rationale")).map(r => r.value);
+
+            // Create a new PowerPoint presentation
+            const pptx = new PptxGenJS();
+
+            // Add a slide for each question and rationale
+            for (let i = 0; i < questions.length; i++) {
+                // Format question text
+                const formattedQuestion = questions[i].replace(/\?/g, '?\n').replace(/([a-p])\)/g, '\n$1)');
+
+                // Add slide for question
+                const questionSlide = pptx.addSlide();
+                questionSlide.addText(formattedQuestion, { x: 1.5, y: 1, w: 7.5, h: 1, align: 'center', font_size: 24 });
+
+                // Add slide for rationale
+                const rationaleSlide = pptx.addSlide();
+                rationaleSlide.addText(rationales[i], { x: 1.5, y: 2, w: 7.5, h: 3, font_size: 16 });
+            }
+
+            // Save the presentation to a file
+            pptx.writeFile('presentation.pptx');
+        }
+
+        function addQuestion() {
+            const questionContainer = document.getElementById("question-container");
+            const rationaleContainer = document.getElementById("rationale-container");
+
+            const questionCount = document.querySelectorAll(".question").length + 1;
+
+            const questionLabel = document.createElement("label");
+            questionLabel.setAttribute("for", "question" + questionCount);
+            questionLabel.innerText = "Question " + questionCount + ":";
+
+            const questionInput = document.createElement("input");
+            questionInput.setAttribute("type", "text");
+            questionInput.setAttribute("class", "question");
+            questionInput.setAttribute("id", "question" + questionCount);
+
+            const rationaleLabel = document.createElement("label");
+            rationaleLabel.setAttribute("for", "rationale" + questionCount);
+            rationaleLabel.innerText = "Rationale " + questionCount + ":";
+
+            const rationaleTextarea = document.createElement("textarea");
+            rationaleTextarea.setAttribute("class", "rationale");
+            rationaleTextarea.setAttribute("id", "rationale" + questionCount);
+
+            const removeButton = document.createElement("button");
+            removeButton.innerText = "Remove Question";
+            removeButton.addEventListener("click", () => removeQuestion(questionContainer, rationaleContainer, questionCount));
+
+            questionContainer.appendChild(questionLabel);
+            questionContainer.appendChild(questionInput);
+            rationaleContainer.appendChild(rationaleLabel);
+            rationaleContainer.appendChild(rationaleTextarea);
+            rationaleContainer.appendChild(removeButton);
+        }
+
+        function removeQuestion(questionContainer, rationaleContainer, questionCount) {
+            const questionInput = document.getElementById("question" + questionCount);
+            const rationaleTextarea = document.getElementById("rationale" + questionCount);
+            const removeButton = questionInput.nextElementSibling;
+
+            questionContainer.removeChild(questionInput.previousElementSibling); // Remove the question label
+            questionContainer.removeChild(questionInput); // Remove the question input
+            rationaleContainer.removeChild(rationaleTextarea.previousElementSibling); // Remove the rationale label
+            rationaleContainer.removeChild(rationaleTextarea); // Remove the rationale textarea
+            rationaleContainer.removeChild(removeButton); // Remove the remove button
+        }
+
+        function addQuestions() {
+            const numQuestionsInput = document.getElementById("num-questions");
+            const numQuestions = parseInt(numQuestionsInput.value);
+
+            for (let i = 0; i < numQuestions; i++) {
+                addQuestion();
+            }
+
+            numQuestionsInput.value = "";
+        }
+    </script>
+</head>
+<body>
+    <div id="question-container">
+        <label for="question1">Question 1:</label>
+        <input type="text" class="question" id="question1"><br>
+    </div>
+    <div id="rationale-container">
+        <label for="rationale1">Rationale 1:</label>
+        <textarea class="rationale" id="rationale1"></textarea><br>
+    </div>
+
+    <div class="button-container">
+        <button onclick="addQuestion()">Add Question</button>
+    </div>
+
+    <div class="button-container">
+        <button class="generate-btn" onclick="generatePPT()">Generate PowerPoint</button>
+    </div>
+
+    <div class="bottom-container">
+        <label for="num-questions">Add Multiple Questions:</label>
+        <input type="number" id="num-questions" min="1">
+        <button onclick="addQuestions()">Add Questions</button>
+    </div>-->
+<!-- Include the PptxGenJS library -->
+<!--<script src="PptxGenJS/dist/pptxgen.bundle.js"></script>
+
+    <script>
+        function addQuestion() {
+            const questionContainer = document.getElementById("question-container");
+            const rationaleContainer = document.getElementById("rationale-container");
+
+            const questionCount = document.querySelectorAll(".question").length + 1;
+
+            const questionLabel = document.createElement("label");
+            questionLabel.setAttribute("for", "question" + questionCount);
+            questionLabel.innerText = "Question " + questionCount + ":";
+
+            const questionInput = document.createElement("input");
+            questionInput.setAttribute("type", "text");
+            questionInput.setAttribute("class", "question");
+            questionInput.setAttribute("id", "question" + questionCount);
+
+            const rationaleLabel = document.createElement("label");
+            rationaleLabel.setAttribute("for", "rationale" + questionCount);
+            rationaleLabel.innerText = "Rationale " + questionCount + ":";
+
+            const rationaleTextarea = document.createElement("textarea");
+            rationaleTextarea.setAttribute("class", "rationale");
+            rationaleTextarea.setAttribute("id", "rationale" + questionCount);
+
+            const removeButton = document.createElement("button");
+            removeButton.innerText = "Remove Question";
+            removeButton.addEventListener("click", () => removeQuestion(questionContainer, rationaleContainer, questionCount, removeButton));
+
+            questionContainer.appendChild(questionLabel);
+            questionContainer.appendChild(questionInput);
+            rationaleContainer.appendChild(rationaleLabel);
+            rationaleContainer.appendChild(rationaleTextarea);
+            rationaleContainer.appendChild(removeButton);
+        }
+
+        function removeQuestion(questionContainer, rationaleContainer, questionCount, removeButton) {
+            const questionInput = document.getElementById("question" + questionCount);
+            const rationaleTextarea = document.getElementById("rationale" + questionCount);
+
+            questionContainer.removeChild(questionInput.previousElementSibling); // Remove the question label
+            questionContainer.removeChild(questionInput); // Remove the question input
+            rationaleContainer.removeChild(rationaleTextarea.previousElementSibling); // Remove the rationale label
+            rationaleContainer.removeChild(rationaleTextarea); // Remove the rationale textarea
+            rationaleContainer.removeChild(removeButton); // Remove the remove button
+        }
+
+        function addQuestions() {
+            const numQuestionsInput = document.getElementById("num-questions");
+            const numQuestions = parseInt(numQuestionsInput.value);
+
+            for (let i = 0; i < numQuestions; i++) {
+                addQuestion();
+            }
+
+            numQuestionsInput.value = "";
+        }
+    </script>
+</body>
+</html>-->
+<!--<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PowerPoint Generator</title>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .generate-btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+
+        .question-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .rationale-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            margin-bottom: 10px;
+        }
+
+        .bottom-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .bottom-container input {
+                margin-right: 10px;
+            }
+    </style>
+    <script>
+        function generatePPT() {
+            // Get the values from the text fields
+            const questions = Array.from(document.querySelectorAll(".question")).map(q => q.value);
+            const rationales = Array.from(document.querySelectorAll(".rationale")).map(r => r.value);
+
+            // Create a new PowerPoint presentation
+            const pptx = new PptxGenJS();
+
+            // Add a slide for each question and rationale
+            for (let i = 0; i < questions.length; i++) {
+                // Format question text
+                const formattedQuestion = questions[i].replace(/\?/g, '?\n').replace(/([a-p])\)/g, '\n$1)');
+
+                // Add slide for question
+                const questionSlide = pptx.addSlide();
+                questionSlide.addText(formattedQuestion, { x: 1.5, y: 1, w: 7.5, h: 1, align: 'center', font_size: 24 });
+
+                // Add slide for rationale
+                const rationaleSlide = pptx.addSlide();
+                rationaleSlide.addText(rationales[i], { x: 1.5, y: 2, w: 7.5, h: 3, font_size: 16 });
+            }
+
+            // Save the presentation to a file
+            pptx.writeFile('presentation.pptx');
+        }
+
+        function addQuestion() {
+            const questionContainer = document.getElementById("question-container");
+            const rationaleContainer = document.getElementById("rationale-container");
+
+            const questionCount = document.querySelectorAll(".question").length + 1;
+
+            const questionDiv = document.createElement("div");
+            questionDiv.setAttribute("class", "question-container");
+
+            const questionLabel = document.createElement("label");
+            questionLabel.setAttribute("for", "question" + questionCount);
+            questionLabel.innerText = "Question " + questionCount + ":";
+
+            const questionInput = document.createElement("input");
+            questionInput.setAttribute("type", "text");
+            questionInput.setAttribute("class", "question");
+            questionInput.setAttribute("id", "question" + questionCount);
+
+            questionDiv.appendChild(questionLabel);
+            questionDiv.appendChild(questionInput);
+
+            const rationaleDiv = document.createElement("div");
+            rationaleDiv.setAttribute("class", "rationale-container");
+
+            const rationaleLabel = document.createElement("label");
+            rationaleLabel.setAttribute("for", "rationale" + questionCount);
+            rationaleLabel.innerText = "Rationale " + questionCount + ":";
+
+            const rationaleTextarea = document.createElement("textarea");
+            rationaleTextarea.setAttribute("id", "rationale" + questionCount);
+
+            rationaleDiv.appendChild(rationaleLabel);
+            rationaleDiv.appendChild(rationaleTextarea);
+
+            const removeButton = document.createElement("button");
+            removeButton.innerText = "Remove Question";
+            removeButton.addEventListener("click", () => removeQuestion(questionContainer, rationaleContainer, questionCount));
+
+            questionDiv.appendChild(removeButton);
+
+            questionContainer.appendChild(questionDiv);
+            rationaleContainer.appendChild(rationaleDiv);
+        }
+
+        function removeQuestion(questionContainer, rationaleContainer, questionCount) {
+            const questionInput = document.getElementById("question" + questionCount);
+            const rationaleTextarea = document.getElementById("rationale" + questionCount);
+
+            const questionDiv = questionInput.parentElement;
+            const rationaleDiv = rationaleTextarea.parentElement;
+
+            questionContainer.removeChild(questionDiv); // Remove the question div
+            rationaleContainer.removeChild(rationaleDiv); // Remove the rationale div
+        }
+
+        function addQuestions() {
+            const numQuestionsInput = document.getElementById("num-questions");
+            const numQuestions = parseInt(numQuestionsInput.value);
+
+            for (let i = 0; i < numQuestions; i++) {
+                addQuestion();
+            }
+
+            numQuestionsInput.value = "";
+        }
+    </script>
+    </head>
+    <body>
+        <div id="question-container">
+            <div class="question-container">
+                <label for="question1">Question 1:</label>
+                <input type="text" class="question" id="question1">
+            </div>
+        </div>
+        <div id="rationale-container">
+            <div class="rationale-container">
+                <label for="rationale1">Rationale 1:</label>
+                <textarea class="rationale" id="rationale1"></textarea>
+            </div>
+        </div>
+        <div class="button-container">
+            <button onclick="addQuestion()">Add Question</button>
+        </div>
+
+        <div class="button-container">
+            <button class="generate-btn" onclick="generatePPT()">Generate PowerPoint</button>
+        </div>
+
+        <div class="bottom-container">
+            <label for="num-questions">Add Multiple Questions:</label>
+            <input type="number" id="num-questions" min="1">
+            <button onclick="addQuestions()">Add Questions</button>
+        </div>-->
+<!-- Include the PptxGenJS library -->
+<!--<script src="PptxGenJS/dist/pptxgen.bundle.js"></script>
+    </body>
+</html>-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>PowerPoint Generator</title>
+    <style>
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .generate-btn {
+            font-size: 20px;
+            padding: 10px 20px;
+            margin-bottom: 20px;
+        }
+
+        .question-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .rationale-container {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+
+        .question {
+            margin-bottom: 10px;
+        }
+
+        .bottom-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+            .bottom-container input {
+                margin-right: 10px;
+            }
+    </style>
+    <script>
+        function generatePPT() {
+            // Get the values from the text fields
+            const questions = Array.from(document.querySelectorAll(".question")).map(q => q.value);
+            //const rationales = Array.from(document.querySelectorAll(".rationale")).map(r => r.value);
+            const rationales = Array.from(document.querySelectorAll("textarea")).map(r => r.value);
+
+
+            // Create a new PowerPoint presentation
+            const pptx = new PptxGenJS();
+
+            // Add a slide for each question and rationale
+            for (let i = 0; i < questions.length; i++) {
+                // Format question text
+                const formattedQuestion = questions[i].replace(/\?/g, '?\n').replace(/([a-f])\)/g, '\n$1)').replace(/([A-F])\)/g, '\n$1)');
+                const formattedRationale = rationales[i].replace(/\Rationale:/g, '\nRationale:');
+
+                // Add slide for question
+                const questionSlide = pptx.addSlide();
+                questionSlide.addText("Question " + i + ": " + formattedQuestion, { x: 1.5, y: 1, w: 7.5, h: 1, align: 'center', font_size: 24 });
+                // Add slide for rationale
+                const rationaleSlide = pptx.addSlide();
+                rationaleSlide.addText(formattedRationale, { x: 1.5, y: 2, w: 7.5, h: 3, font_size: 16 });
+            }
+
+            // Save the presentation to a file
+            pptx.writeFile('presentation.pptx');
+        }
+
+        function addQuestion(questionInput = "", rationaleInput = "") {
+            const questionContainer = document.getElementById("question-container");
+            const rationaleContainer = document.getElementById("rationale-container");
+
+            const questionCount = document.querySelectorAll(".question").length + 1;
+
+            const questionDiv = document.createElement("div");
+            questionDiv.setAttribute("class", "question-container");
+
+            const questionLabel = document.createElement("label");
+            questionLabel.setAttribute("for", "question" + questionCount);
+            questionLabel.innerText = "Question " + questionCount + ":";
+
+            const questionInputField = document.createElement("input");
+            questionInputField.setAttribute("type", "text");
+            questionInputField.setAttribute("class", "question");
+            questionInputField.setAttribute("id", "question" + questionCount);
+
+            if (questionInput) {
+                questionInputField.setAttribute("value", questionInput);
+            }
+
+            questionDiv.appendChild(questionLabel);
+            questionDiv.appendChild(questionInputField);
+
+            const rationaleDiv = document.createElement("div");
+            rationaleDiv.setAttribute("class", "rationale-container");
+
+            const rationaleLabel = document.createElement("label");
+            rationaleLabel.setAttribute("for", "rationale" + questionCount);
+            rationaleLabel.innerText = "Rationale " + questionCount + ":";
+
+            const rationaleTextarea = document.createElement("textarea");
+            rationaleTextarea.setAttribute("id", "rationale" + questionCount);
+
+            if (rationaleInput) {
+                rationaleTextarea.value = rationaleInput;
+            }
+
+            rationaleDiv.appendChild(rationaleLabel);
+            rationaleDiv.appendChild(rationaleTextarea);
+
+            const removeButton = document.createElement("button");
+            removeButton.innerText = "Remove Question";
+            removeButton.addEventListener("click", () => removeQuestion(questionContainer, rationaleContainer, questionCount));
+
+            questionDiv.appendChild(removeButton);
+
+            questionContainer.appendChild(questionDiv);
+            rationaleContainer.appendChild(rationaleDiv);
+        }
+
+        function removeQuestion(questionContainer, rationaleContainer, questionCount) {
+            const questionInput = document.getElementById("question" + questionCount);
+            const rationaleTextarea = document.getElementById("rationale" + questionCount);
+
+            const questionDiv = questionInput.parentElement;
+            const rationaleDiv = rationaleTextarea.parentElement;
+
+            questionContainer.removeChild(questionDiv); // Remove the question div
+            rationaleContainer.removeChild(rationaleDiv); // Remove the rationale div
+        }
+
+        function addQuestions() {
+            const numQuestionsInput = document.getElementById("num-questions");
+            const numQuestions = parseInt(numQuestionsInput.value);
+
+            for (let i = 0; i < numQuestions; i++) {
+                addQuestion();
+            }
+
+            numQuestionsInput.value = "";
+        }
+
+        function parseAndAddBoxes() {
+            const parseInput = document.getElementById("parse-input");
+            const input = parseInput.value;
+
+            const questionInputs = input.split("|").slice(1);
+            const rationaleInputs = input.split("$").slice(1);
+
+            const numberOfPairs = Math.min(questionInputs.length, rationaleInputs.length);
+
+            for (let i = 0; i < numberOfPairs; i++) {
+                const questionInput = questionInputs[i]?.trim();
+                const rationaleInput = rationaleInputs[i]?.trim();
+
+                if (questionInput && rationaleInput) {
+                    addQuestion(questionInput, rationaleInput);
+                }
+            }
+
+            parseInput.value = "";
+        }
+    </script>
+</head>
+<body>
+
+    <div id="question-container">
+        <div class="question-container">
+            <label for="question1">Question 1:</label>
+            <input type="text" class="question" id="question1">
+        </div>
+    </div>
+    <div id="rationale-container">
+        <div class="rationale-container">
+            <label for="rationale1">Rationale 1:</label>
+            <textarea class="rationale" id="rationale1"></textarea>
+        </div>
+    </div>
+    <div class="button-container">
+        <button onclick="addQuestion()">Add Question</button>
+    </div>
+    <div class="button-container">
+        <button class="generate-btn" onclick="generatePPT()">Generate PowerPoint</button>
+    </div>
+
+    <div class="bottom-container">
+        <label for="num-questions">Add Multiple Questions:</label>
+        <input type="number" id="num-questions" min="1">
+        <button onclick="addQuestions()">Add Questions</button>
+    </div>
+
+    <div class="bottom-container" id="parse-input-container">
+        <label for="parse-input">Parse Input:</label>
+        <textarea id="parse-input" rows="4" cols="50"></textarea>>
+        <button onclick="parseAndAddBoxes()">Add Boxes</button>
+    </div>
+
+    <!-- Include the PptxGenJS library -->
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/pptxgenjs@latest/dist/pptxgen.bundle.js"></script>
+</body>
+</html>
